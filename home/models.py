@@ -13,6 +13,7 @@ class HomePage(Page):
     epigraph = models.CharField(max_length=85, blank=False, null=True, help_text='company name or site name or brand or etc.')
     banner_title = models.CharField(max_length=100, blank=True, null=True)
     banner_subtitle = RichTextField(features=['bold', 'italic'])
+    about_text = RichTextField(features=['bold', 'italic'], help_text='short introduction to yourself or your company or etc')
     banner_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -25,6 +26,7 @@ class HomePage(Page):
         FieldPanel('epigraph', ),
         FieldPanel('banner_title', ),
         FieldPanel('banner_subtitle', ),
+        FieldPanel('about_text', ),
         ImageChooserPanel('banner_image'),
     ]
 
