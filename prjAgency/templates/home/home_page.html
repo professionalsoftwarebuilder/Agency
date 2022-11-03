@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+    {% image self.banner_image width-1500 as img %}
+
+    <div class="bg-light p-5 rounded-lg m-3"
+         style="background-image: url('{{ img.url }}'); background-size: cover; background-position: center center; color: white !important;">
+      <h1 class="display-4">{{ self.banner_title }}</h1>
+            <div class="lead" >{{ self.banner_subtitle|richtext }}</div>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        {% if self.banner_cta %}
+            <a class="btn btn-primary btn-lg" href="#" role="button">@todo</a>
+        {% endif %}
+    </div>
+
+{% endblock content %}

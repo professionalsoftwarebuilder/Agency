@@ -1,0 +1,26 @@
+{% load wagtailimages_tags %}
+
+    {% for amilestone in self.milestone %}
+        {% image amilestone.image fill-300x200 as img %}
+        {% if forloop.counter|divisibleby:2 %}
+        <li>
+        {% else %}
+        <li class="timeline-inverted">
+        {% endif %}
+            <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{{ img.url }}" alt="{{ img.alt }}" />
+            </div>
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4>{{ amilestone.date }}</h4>
+                    <h4 class="subheading">{{ amilestone.title }}</h4>
+                </div>
+                <div class="timeline-body">
+                    <p class="text-muted">
+                        {{ amilestone.text }}
+                    </p>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+

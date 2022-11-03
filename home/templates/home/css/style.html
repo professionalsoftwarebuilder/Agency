@@ -1,0 +1,17 @@
+{% load wagtailimages_tags %}
+{% image self.banner_image original as img %}
+
+<style>
+  header.masthead {
+    padding-top: 10.5rem;
+    padding-bottom: 6rem;
+    text-align: center;
+    color: #fff;
+    background-image: url("{{ img.url }}");
+    //background-image: url("../assets/img/header-bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+  }
+</style>
