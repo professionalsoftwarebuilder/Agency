@@ -6,6 +6,10 @@ from wagtail.models import Page
 from streams import blocks
 from wagtail.core.fields import StreamField
 
+from wagtailsvg.models import Svg
+from wagtailsvg.blocks import SvgChooserBlock
+from wagtailsvg.edit_handlers import SvgChooserPanel
+
 class HomePage(Page):
 
     template = 'home/index.html'
@@ -27,6 +31,13 @@ class HomePage(Page):
     switch_portfolio = models.BooleanField('Portfolio aan/uit', blank=False, default=True)
     switch_team = models.BooleanField('Team aan/uit', blank=False, default=True)
     switch_milestones = models.BooleanField('Mijlpalen aan/uit', blank=False, default=True)
+    logo = models.ForeignKey(
+        Svg,
+        related_name='+',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
     milestones = StreamField([
         ('milestones', blocks.MileStone()),
         ],
@@ -37,6 +48,7 @@ class HomePage(Page):
 
     services = StreamField([
         ('services', blocks.Service()),
+        ('svg', SvgChooserBlock()),
         ],
         blank=True,
         null=True,
@@ -45,6 +57,7 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('epigraph', ),
+        SvgChooserPanel('logo'),
         FieldPanel('banner_title', ),
         FieldPanel('banner_subtitle', ),
         FieldPanel('about_text', ),

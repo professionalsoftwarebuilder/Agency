@@ -2,7 +2,7 @@
 
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
-
+from wagtailsvg.blocks import SvgChooserBlock
 
 class CardBlock(blocks.StructBlock):
     """Cards with image and text and button"""
@@ -94,6 +94,7 @@ class Service(blocks.StructBlock):
     service = blocks.ListBlock(
         blocks.StructBlock([
             ('title', blocks.CharBlock(max_length=85, required=True)),
+            ('svg_img', SvgChooserBlock(required=False)),
             ('fa_classes', blocks.CharBlock(max_length=300, required=False, help_text='Eventuele font awesome icon classes, wanneer deze worden gebruikt, vervangt het de image op de pagina')),
             ('image', ImageChooserBlock(required=False, help_text='Wordt getoond wanneer er geen font awesome icon classes opgegeven zijn')),
             ('text', blocks.TextBlock(required=False)),

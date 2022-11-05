@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from decouple import config, Csv
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -39,6 +40,11 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+
+    'wagtailsvg',
+    'wagtail.contrib.modeladmin',
+    'generic_chooser',
+
     "modelcluster",
     "taggit",
     "django.contrib.admin",
@@ -88,8 +94,8 @@ WSGI_APPLICATION = "prjAgency.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "ENGINE": config('DB_ENGINE'),
+        "NAME": os.path.join(BASE_DIR, config('DB_NM')),
     }
 }
 
@@ -170,3 +176,6 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+#WAGTAILSVG_UPLOAD_FOLDER = os.path.join(BASE_DIR, "svg")
+WAGTAILSVG_UPLOAD_FOLDER = "svg"
