@@ -1,7 +1,7 @@
 {% load wagtailimages_tags %}
 
     {% for amilestone in self.milestone %}
-        {% image amilestone.image fill-300x200 as img %}
+        {% image amilestone.image fill-200x200 as img %}
         {% if forloop.counter|divisibleby:2 %}
         <li>
         {% else %}
